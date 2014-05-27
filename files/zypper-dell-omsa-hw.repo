@@ -1,0 +1,6 @@
+[dell-omsa-hw]
+name=dell-omsa-hw
+enabled=1
+autorefresh=0
+baseurl=http://linux.dell.com/repo/hardware/latest/system.ven_0x1028.dev_#DEVID#/suse11_64/
+type=rpm-md
