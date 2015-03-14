@@ -84,7 +84,7 @@ class omsa::repo (
     'ubuntu': {
       case $::lsbdistrelease {
         '12.04': {
-          apt::source { 'osma':
+          apt::source { 'omsa':
             location          => 'http://linux.dell.com/repo/community/ubuntu',
             release           => 'precise',
             repos             => 'openmanage',
@@ -97,6 +97,23 @@ class omsa::repo (
           fail("unsupported: ${::osfamily}/${::operatingsystem}/${::operatingsystemrelease}")
         }
       }
+    }
+    'debian': {
+      case $::lsbdistcodename {
+        'wheezy': {
+          apt::source { 'omsa':
+            location          => 'http://linux.dell.com/repo/community/debian',
+            release           => 'wheezy',
+            repos             => 'openmanage',
+            key               => '1285491434D8786F',
+            key_server        => 'pool.sks-keyservers.net',
+            include_src       => false,
+          }
+        }
+        default: {
+          fail("unsupported: ${::osfamily}/${::operatingsystem}/${::operatingsystemrelease}")
+        }
+      }      
     }
     default: {
       fail("unsupported: ${::osfamily}/${::operatingsystem}/${::operatingsystemrelease}")
